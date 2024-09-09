@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3lbvmx5ayjqa"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_rc5w7"]
+[ext_resource type="FontFile" uid="uid://bp2yxojpf6w8r" path="res://resour/Ubuntu-B.ttf" id="2_fp81e"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rc5w7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -66.0
+offset_right = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LVL" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fp81e")
+theme_override_font_sizes/font_size = 64
+text = "LVL"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fp81e")
+theme_override_font_sizes/font_size = 64
+text = "1"
+alignment = 1
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fp81e")
+theme_override_font_sizes/font_size = 64
+text = "ИГРАТЬ"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fp81e")
+theme_override_font_sizes/font_size = 64
+text = "ВЫЙТИ"
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -777.5
+offset_right = 777.5
+offset_bottom = 225.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_fp81e")
+theme_override_font_sizes/font_size = 200
+text = "ARKANOID 2.5D"
+
+[node name="Descrip" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_fp81e")
+theme_override_font_sizes/font_size = 64
+text = "Добро пожаловать в мою игру!
+Ниже вы можете выбрать уровень,  с которого она начнётся
+Число уровней БЕСКОНЕЧНО.
+Дополнительная механика: абилка на SPACE."
+horizontal_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

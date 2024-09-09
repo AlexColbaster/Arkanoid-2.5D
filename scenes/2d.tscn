@@ -1,0 +1,145 @@
+[gd_scene load_steps=12 format=3 uid="uid://b6t64f2mlph2n"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_lslva"]
+[ext_resource type="Script" path="res://scripts/arkanoid.gd" id="1_o58oa"]
+[ext_resource type="Script" path="res://scripts/ball.gd" id="3_4e0ah"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n4umj"]
+bg_color = Color(0.189361, 0.327904, 0.211998, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cjon"]
+size = Vector2(10, 126)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1cm8l"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dq80"]
+size = Vector2(1500, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hlfo"]
+size = Vector2(20, 720)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ov5f"]
+bg_color = Color(0.900849, 0.457309, 0.25489, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8y3g1"]
+radius = 7.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcuia"]
+size = Vector2(1500, 100)
+
+[node name="2D" type="Node2D"]
+position = Vector2(1, 0)
+script = ExtResource("1_o58oa")
+start_brick_pos = Vector2(45, 25)
+separation_x = 90
+separation_y = 50
+
+[node name="BG" type="Panel" parent="."]
+offset_right = 1000.0
+offset_bottom = 720.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n4umj")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(250, 704)
+script = ExtResource("1_lslva")
+speed = 550
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_5cjon")
+
+[node name="Panel" type="Panel" parent="Player"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -5.0
+offset_right = 61.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1cm8l")
+
+[node name="UpWall" type="StaticBody2D" parent="."]
+position = Vector2(500, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpWall"]
+shape = SubResource("RectangleShape2D_8dq80")
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+position = Vector2(0, 360)
+shape = SubResource("RectangleShape2D_5hlfo")
+
+[node name="Panel" type="Panel" parent="LeftWall"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10.0
+offset_right = 10.0
+offset_bottom = 720.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ov5f")
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+position = Vector2(1000, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+position = Vector2(0, 360)
+shape = SubResource("RectangleShape2D_5hlfo")
+
+[node name="Panel" type="Panel" parent="RightWall"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10.0
+offset_right = 10.0
+offset_bottom = 720.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ov5f")
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+position = Vector2(135, 609)
+rotation = -2.35619
+script = ExtResource("3_4e0ah")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_8y3g1")
+
+[node name="Panel" type="Panel" parent="Ball"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ov5f")
+
+[node name="Line2D" type="Line2D" parent="Ball"]
+width = 5.0
+
+[node name="Ray1" type="RayCast2D" parent="Ball"]
+
+[node name="Ray2" type="RayCast2D" parent="Ball"]
+
+[node name="Deadzone" type="StaticBody2D" parent="." groups=["dead"]]
+position = Vector2(500, 760)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deadzone"]
+shape = SubResource("RectangleShape2D_vcuia")
